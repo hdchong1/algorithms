@@ -53,6 +53,8 @@ public class Main {
 		}		
 		System.out.print("maxNum is "+maxNum+", maxCnt is "+maxCnt);
 		
+		scan.close();
+		
 	}
 
 }
