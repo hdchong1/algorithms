@@ -13,34 +13,40 @@ public class Main {
 		int secondNum = scan.nextInt();
 		
 		int small = Math.min(firstNum, secondNum);
+
+// first algorithm	
+		
 		int gcd0 = 1;
 		int cnt0 = 0;
 		
-		for (int i = small; i >= 1; i--) {
+		for (int i = 1; i <= small; i++) {
 			cnt0++;
 			if (firstNum%i == 0 && secondNum%i ==0) {
 				gcd0 = i;
-				break;
 			}
+			
 		}		
+		
 		System.out.println("cnt0:"+cnt0);
 		System.out.println(gcd0);
 	
+// second algorithm		
 		
 		int gcd1 = 1;
 		int cnt1 = 0;
-		for (int i = 1; i <= small; i++) {
+		
+		for (int i = small; i >= 1; i--) {
 			cnt1++;
 			if (firstNum%i == 0 && secondNum%i ==0) {
 				gcd1 = i;
+				break;
 			}
-			
 		}		
 		
 		System.out.println("cnt1:"+cnt1);
 		System.out.println(gcd1);
 		
-// second algorithm		
+// third algorithm		
 		
 		int firstDivNum = firstNum;
 		int secondDivNum = secondNum;
@@ -66,17 +72,16 @@ public class Main {
 		System.out.println("cnt2:"+cnt2);
 		System.out.println(gcd2);
 		
-// forth algorithm		
+// forth algorithm		36966, 49288
 		
 		int smallDivNum = Math.min(firstNum, secondNum);
 		int bigDivNum = Math.max(firstNum, secondNum);
-//		int bigNum bigDivNum;
 		
 		int gcd3 = 1;
 		int cnt3 = 0;
 		
 		int i3 = 2;
-		while (smallDivNum/i3>0 && bigDivNum/i3>0) {
+		while (smallDivNum/i3>0) {
 			cnt3++;
 
 			if (bigDivNum%smallDivNum==0) {
@@ -102,10 +107,37 @@ public class Main {
 		
 		System.out.println("cnt3:"+cnt3);
 		System.out.println(gcd3);
-
-		
 		
 		scan.close();
+		
+// fifth algorithm - recursive
+
+        int a = 36966, b = 49288;
+        System.out.println("GCD of " + a +" and " + b + " is " + gcd(a, b, 0));
+		
 	}
+	
+    // Recursive function to return gcd of a and b
+    static int gcd(int a, int b, int c)
+    {
+    	c++;
+    	System.out.println(c);
+    	
+        // Everything divides 0 
+        if (a == 0)
+          return b;
+        if (b == 0)
+          return a;
+      
+        // base case
+        if (a == b)
+            return a;
+      
+        // a is greater
+        if (a > b)
+            return gcd(a-b, b, c);
+        return gcd(a, b-a, c);
+    }
+
 
 }
