@@ -4,6 +4,8 @@ import java.util.Scanner;
 
 public class Main {
 
+	private static long cc;
+
 	public static void main(String[] args) {
 		// the greatest common divisor
 
@@ -112,16 +114,18 @@ public class Main {
 		
 // fifth algorithm - recursive
 
-        int a = 36966, b = 49288;
-        System.out.println("GCD of " + a +" and " + b + " is " + gcd(a, b, 0));
+//        int a = 36966, b = 49288;
+        int a = firstNum, b = secondNum;
+        System.out.println("GCD of " + a +" and " + b + " is " + gcd(a, b));
+        System.out.println(cc);
 		
 	}
 	
     // Recursive function to return gcd of a and b
-    static int gcd(int a, int b, int c)
+	// stack overflow when big different between and b because many times of calling recursive functions
+    static int gcd(int a, int b)
     {
-    	c++;
-    	System.out.println(c);
+    	cc++;
     	
         // Everything divides 0 
         if (a == 0)
@@ -135,8 +139,8 @@ public class Main {
       
         // a is greater
         if (a > b)
-            return gcd(a-b, b, c);
-        return gcd(a, b-a, c);
+            return gcd(a-b, b);
+        return gcd(a, b-a);
     }
 
 
